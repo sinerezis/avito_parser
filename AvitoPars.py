@@ -1,11 +1,8 @@
 import time
 from collections import namedtuple
-
 import requests
 from bs4 import BeautifulSoup
-
 import csv
-
 
 InnerBlock = namedtuple('Block', 'title, price, date, url')     #create namedtuple
 
