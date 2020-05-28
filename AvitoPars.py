@@ -23,7 +23,6 @@ class AvitoParser:
                                 'Accept-Language' : 'ru'
                                }                                      #use headers for login on avito.ru
 
-
     def get_page(self, page: int = None):
         params = {
             'radius': 100,
@@ -37,14 +36,12 @@ class AvitoParser:
         r = self.session.get(url, params=params)
         return r.text       
 
-
     def pagination_limit(self):
         text = self.get_page()                                       #func for search a search maximum pages 
         soup = BeautifulSoup(text, 'lxml')
         container = soup.select('span.pagination-item-1WyVp')
         last_button = container[-2]
         return int(last_button.text)
-
 
     def parse_block(self, item):
         url_block = item.select_one('a.snippet-link')             #func for getting all html code and creating a block with information
@@ -78,7 +75,6 @@ class AvitoParser:
             
         )
 
-
     def get_blocks(self, page:int = 2):                         #func for getting inf.block and parsing him
         text = self.get_page(page=page)                         
         soup = BeautifulSoup(text, 'lxml')
@@ -91,9 +87,6 @@ class AvitoParser:
                 writter = csv.writer(f)
                 writter.writerow(block)
             
-            
-
-
     def parse_all(self):                                          #func for parse all pages from search query 
         limit = self.pagination_limit()
         print(f'Всего {limit} страниц')
@@ -103,22 +96,9 @@ class AvitoParser:
             self.get_blocks(page=i)
             
 
-            
-
-
 def main():
     p = AvitoParser()                                      #point of entry 
     p.parse_all()
-    
-    
-
-
-
-
-
-    
-    
-                                           
     
     
 if __name__ == "__main__":
