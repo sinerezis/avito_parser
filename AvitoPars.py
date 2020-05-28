@@ -11,7 +11,6 @@ class Block(InnerBlock):
     def __str__(self):
         return f'{self.title}\t{self.price}\t{self.date}\t{self.url}'       #create str method for namedtuple
 
-
 class AvitoParser:
 
     def __init__(self):
