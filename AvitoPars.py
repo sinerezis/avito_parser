@@ -9,7 +9,7 @@ InnerBlock = namedtuple('Block', 'title, price, date, url')     #create namedtup
 class Block(InnerBlock):
     
     def __str__(self):
-        return f'{self.title}\t{self.price}\t{self.date}\t{self.url}'       #create str method for namedtuple
+        return f'{self.title}"\t"{self.price}"\t"{self.date}"\t"{self.url}'       #create str method for namedtuple
 
 
 class AvitoParser:
@@ -80,7 +80,7 @@ class AvitoParser:
         for item in container:
             block = self.parse_block(item=item)
             i += 1
-            with open('avito.csv', 'a') as f:
+            with open('result.csv', 'a') as f:
                 writter = csv.writer(f)
                 writter.writerow(block)
             
@@ -91,6 +91,7 @@ class AvitoParser:
             if i % 2 == 0:
                 time.sleep(9)
             self.get_blocks(page=i)
+            print(f'page {i} done!')
             
 
 def main():
